@@ -6,9 +6,14 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		04DB663C1EBC1F3600FAF0F3 /* AIUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04DB663B1EBC1F3600FAF0F3 /* AIUtilities.framework */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		04DB66311EBBFF4900FAF0F3 /* Lurch4Adium.AdiumPlugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Lurch4Adium.AdiumPlugin; sourceTree = BUILT_PRODUCTS_DIR; };
 		04DB66341EBBFF4900FAF0F3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		04DB663B1EBC1F3600FAF0F3 /* AIUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AIUtilities.framework; path = "Frameworks/adium/build/Release-Debug/AIUtilities.framework"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -16,6 +21,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04DB663C1EBC1F3600FAF0F3 /* AIUtilities.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -27,6 +33,7 @@
 			children = (
 				04DB66331EBBFF4900FAF0F3 /* Lurch4Adium */,
 				04DB66321EBBFF4900FAF0F3 /* Products */,
+				04DB663A1EBC1F2D00FAF0F3 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -44,6 +51,14 @@
 				04DB66341EBBFF4900FAF0F3 /* Info.plist */,
 			);
 			path = Lurch4Adium;
+			sourceTree = "<group>";
+		};
+		04DB663A1EBC1F2D00FAF0F3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				04DB663B1EBC1F3600FAF0F3 /* AIUtilities.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -212,6 +227,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Frameworks/adium/build/Release-Debug",
+				);
 				INFOPLIST_FILE = Lurch4Adium/Info.plist;
 				INSTALL_PATH = "$(HOME)/Library/Application Support/Adium 2.0/PlugIns/";
 				PRODUCT_BUNDLE_IDENTIFIER = net.ssji.narf.Lurch4Adium;
@@ -225,6 +244,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Frameworks/adium/build/Release-Debug",
+				);
 				INFOPLIST_FILE = Lurch4Adium/Info.plist;
 				INSTALL_PATH = "$(HOME)/Library/Application Support/Adium 2.0/PlugIns/";
 				PRODUCT_BUNDLE_IDENTIFIER = net.ssji.narf.Lurch4Adium;
