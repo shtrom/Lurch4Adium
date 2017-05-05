@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "04DB66301EBBFF4900FAF0F3"
-               BuildableName = "Lurch4Adium.bundle"
+               BuildableName = "Lurch4Adium.AdiumPlugin"
                BlueprintName = "Lurch4Adium"
                ReferencedContainer = "container:Lurch4Adium.xcodeproj">
             </BuildableReference>
@@ -46,7 +46,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "04DB66301EBBFF4900FAF0F3"
-            BuildableName = "Lurch4Adium.bundle"
+            BuildableName = "Lurch4Adium.AdiumPlugin"
             BlueprintName = "Lurch4Adium"
             ReferencedContainer = "container:Lurch4Adium.xcodeproj">
          </BuildableReference>
@@ -64,7 +64,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "04DB66301EBBFF4900FAF0F3"
-            BuildableName = "Lurch4Adium.bundle"
+            BuildableName = "Lurch4Adium.AdiumPlugin"
             BlueprintName = "Lurch4Adium"
             ReferencedContainer = "container:Lurch4Adium.xcodeproj">
          </BuildableReference>
