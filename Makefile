@@ -5,7 +5,10 @@ HGRC=~/.hgrc
 
 all: prepare
 
-prepare: prepare-adium
+prepare: prepare-adium prepare-vendor
+
+prepare-vendor:
+	git submodule update --init --recursive
 
 prepare-adium: Frameworks/adium/.built
 
@@ -29,9 +32,15 @@ Frameworks/:
 clean: clean-adium
 clean-adium:
 	cd Frameworks/adium; make clean
+clean-lurch:
+	cd vendor/lurch; make clean
+clean-carbon:
+	cd vendor/carbon; make clean
 
 real-clean:
 	rm -rf Frameworks/
 
-.PHONY: all prepare clean real-clean \
+.PHONY: all prepare prepare-vendor clean real-clean \
+	prepare-lurch clean-lurch \
+	prepare-carbons clean-carbons \
 	fix-hg-conf prepare-adium clean-adium \
