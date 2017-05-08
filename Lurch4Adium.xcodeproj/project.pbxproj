@@ -7,26 +7,42 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0415CCD81EC040D200468036 /* libmxml.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0415CCD71EC040D200468036 /* libmxml.a */; };
 		0448A9991EBFEA9800FA8A2A /* AdiumLibpurple.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0448A9981EBFEA9800FA8A2A /* AdiumLibpurple.framework */; };
 		0448A9A31EC0090700FA8A2A /* Adium.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0448A9A21EC0090700FA8A2A /* Adium.framework */; };
-		04DB663C1EBC1F3600FAF0F3 /* AIUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04DB663B1EBC1F3600FAF0F3 /* AIUtilities.framework */; };
-		04DB66421EBC202800FAF0F3 /* Lurch4Adium.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DB66411EBC202800FAF0F3 /* Lurch4Adium.m */; };
-		0448A9AB1EC022D000FA8A2A /* libpurple.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0448A9AA1EC022D000FA8A2A /* libpurple.framework */; };
 		0448A9A71EC0219600FA8A2A /* carbons.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0448A9A61EC0219600FA8A2A /* carbons.a */; };
 		0448A9A91EC0219C00FA8A2A /* lurch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0448A9A81EC0219C00FA8A2A /* lurch.a */; };
+		0448A9AB1EC022D000FA8A2A /* libpurple.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0448A9AA1EC022D000FA8A2A /* libpurple.framework */; };
+		0448A9C31EC037EE00FA8A2A /* libgcrypt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0448A9C21EC037EE00FA8A2A /* libgcrypt.framework */; };
+		0448A9C51EC037F900FA8A2A /* libglib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0448A9C41EC037F900FA8A2A /* libglib.framework */; };
+		0448A9C91EC0383F00FA8A2A /* libsignal-protocol-c.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0448A9C81EC0383F00FA8A2A /* libsignal-protocol-c.a */; };
+		0448A9CB1EC0384F00FA8A2A /* libaxc-nt.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0448A9CA1EC0384F00FA8A2A /* libaxc-nt.a */; };
+		0448A9CD1EC0385800FA8A2A /* libomemo-conversations.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0448A9CC1EC0385800FA8A2A /* libomemo-conversations.a */; };
+		0448A9CF1EC0387F00FA8A2A /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 0448A9CE1EC0387F00FA8A2A /* libsqlite3.tbd */; };
+		0448A9D11EC0388500FA8A2A /* libxml2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 0448A9D01EC0388500FA8A2A /* libxml2.tbd */; };
+		04DB663C1EBC1F3600FAF0F3 /* AIUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04DB663B1EBC1F3600FAF0F3 /* AIUtilities.framework */; };
+		04DB66421EBC202800FAF0F3 /* Lurch4Adium.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DB66411EBC202800FAF0F3 /* Lurch4Adium.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0415CCD71EC040D200468036 /* libmxml.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libmxml.a; path = vendor/mxml/libmxml.a; sourceTree = "<group>"; };
 		0448A9981EBFEA9800FA8A2A /* AdiumLibpurple.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdiumLibpurple.framework; path = "Frameworks/adium/build/Release-Debug/AdiumLibpurple.framework"; sourceTree = "<group>"; };
 		0448A9A21EC0090700FA8A2A /* Adium.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Adium.framework; path = "Frameworks/adium/build/Release-Debug/Adium.framework"; sourceTree = "<group>"; };
+		0448A9A61EC0219600FA8A2A /* carbons.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = carbons.a; path = vendor/carbons/build/carbons.a; sourceTree = "<group>"; };
+		0448A9A81EC0219C00FA8A2A /* lurch.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = lurch.a; path = vendor/lurch/build/lurch.a; sourceTree = "<group>"; };
 		0448A9AA1EC022D000FA8A2A /* libpurple.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = libpurple.framework; path = Frameworks/adium/Frameworks/libpurple.framework; sourceTree = "<group>"; };
+		0448A9C21EC037EE00FA8A2A /* libgcrypt.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = libgcrypt.framework; path = Frameworks/adium/Frameworks/libgcrypt.framework; sourceTree = "<group>"; };
+		0448A9C41EC037F900FA8A2A /* libglib.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = libglib.framework; path = Frameworks/adium/Frameworks/libglib.framework; sourceTree = "<group>"; };
+		0448A9C81EC0383F00FA8A2A /* libsignal-protocol-c.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libsignal-protocol-c.a"; path = "vendor/lurch/lib/axc/lib/libsignal-protocol-c/build/src/libsignal-protocol-c.a"; sourceTree = "<group>"; };
+		0448A9CA1EC0384F00FA8A2A /* libaxc-nt.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libaxc-nt.a"; path = "vendor/lurch/lib/axc/build/libaxc-nt.a"; sourceTree = "<group>"; };
+		0448A9CC1EC0385800FA8A2A /* libomemo-conversations.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libomemo-conversations.a"; path = "vendor/lurch/lib/libomemo/build/libomemo-conversations.a"; sourceTree = "<group>"; };
+		0448A9CE1EC0387F00FA8A2A /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		0448A9D01EC0388500FA8A2A /* libxml2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.tbd; path = usr/lib/libxml2.tbd; sourceTree = SDKROOT; };
 		04DB66311EBBFF4900FAF0F3 /* Lurch4Adium.AdiumPlugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Lurch4Adium.AdiumPlugin; sourceTree = BUILT_PRODUCTS_DIR; };
 		04DB66341EBBFF4900FAF0F3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		04DB663B1EBC1F3600FAF0F3 /* AIUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AIUtilities.framework; path = "Frameworks/adium/build/Release-Debug/AIUtilities.framework"; sourceTree = "<group>"; };
 		04DB66401EBC202800FAF0F3 /* Lurch4Adium.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Lurch4Adium.h; sourceTree = "<group>"; };
 		04DB66411EBC202800FAF0F3 /* Lurch4Adium.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Lurch4Adium.m; sourceTree = "<group>"; };
-		0448A9A61EC0219600FA8A2A /* carbons.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = carbons.a; path = vendor/carbons/build/carbons.a; sourceTree = "<group>"; };
-		0448A9A81EC0219C00FA8A2A /* lurch.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = lurch.a; path = vendor/lurch/build/lurch.a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -34,12 +50,19 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0448A9D11EC0388500FA8A2A /* libxml2.tbd in Frameworks */,
+				0448A9CF1EC0387F00FA8A2A /* libsqlite3.tbd in Frameworks */,
 				04DB663C1EBC1F3600FAF0F3 /* AIUtilities.framework in Frameworks */,
 				0448A9A31EC0090700FA8A2A /* Adium.framework in Frameworks */,
 				0448A9991EBFEA9800FA8A2A /* AdiumLibpurple.framework in Frameworks */,
-				0448A9A31EC0090700FA8A2A /* Adium.framework in Frameworks */,
 				0448A9AB1EC022D000FA8A2A /* libpurple.framework in Frameworks */,
+				0448A9C51EC037F900FA8A2A /* libglib.framework in Frameworks */,
+				0448A9C31EC037EE00FA8A2A /* libgcrypt.framework in Frameworks */,
 				0448A9A71EC0219600FA8A2A /* carbons.a in Frameworks */,
+				0415CCD81EC040D200468036 /* libmxml.a in Frameworks */,
+				0448A9C91EC0383F00FA8A2A /* libsignal-protocol-c.a in Frameworks */,
+				0448A9CB1EC0384F00FA8A2A /* libaxc-nt.a in Frameworks */,
+				0448A9CD1EC0385800FA8A2A /* libomemo-conversations.a in Frameworks */,
 				0448A9A91EC0219C00FA8A2A /* lurch.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -77,11 +100,19 @@
 		04DB663A1EBC1F2D00FAF0F3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				0448A9AA1EC022D000FA8A2A /* libpurple.framework */,
+				0448A9D01EC0388500FA8A2A /* libxml2.tbd */,
+				0448A9CE1EC0387F00FA8A2A /* libsqlite3.tbd */,
 				04DB663B1EBC1F3600FAF0F3 /* AIUtilities.framework */,
 				0448A9A21EC0090700FA8A2A /* Adium.framework */,
 				0448A9981EBFEA9800FA8A2A /* AdiumLibpurple.framework */,
+				0448A9AA1EC022D000FA8A2A /* libpurple.framework */,
+				0448A9C41EC037F900FA8A2A /* libglib.framework */,
+				0448A9C21EC037EE00FA8A2A /* libgcrypt.framework */,
 				0448A9A61EC0219600FA8A2A /* carbons.a */,
+				0415CCD71EC040D200468036 /* libmxml.a */,
+				0448A9C81EC0383F00FA8A2A /* libsignal-protocol-c.a */,
+				0448A9CA1EC0384F00FA8A2A /* libaxc-nt.a */,
+				0448A9CC1EC0385800FA8A2A /* libomemo-conversations.a */,
 				0448A9A81EC0219C00FA8A2A /* lurch.a */,
 			);
 			name = Frameworks;
@@ -265,6 +296,10 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/vendor/lurch/build",
 					"$(PROJECT_DIR)/vendor/carbons/build",
+					"$(PROJECT_DIR)/vendor/mxml",
+					"$(PROJECT_DIR)/vendor/lurch/lib/axc/lib/libsignal-protocol-c/build/src",
+					"$(PROJECT_DIR)/vendor/lurch/lib/axc/build",
+					"$(PROJECT_DIR)/vendor/lurch/lib/libomemo/build",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = net.ssji.narf.Lurch4Adium;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -288,6 +323,10 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/vendor/lurch/build",
 					"$(PROJECT_DIR)/vendor/carbons/build",
+					"$(PROJECT_DIR)/vendor/mxml",
+					"$(PROJECT_DIR)/vendor/lurch/lib/axc/lib/libsignal-protocol-c/build/src",
+					"$(PROJECT_DIR)/vendor/lurch/lib/axc/build",
+					"$(PROJECT_DIR)/vendor/lurch/lib/libomemo/build",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = net.ssji.narf.Lurch4Adium;
 				PRODUCT_NAME = "$(TARGET_NAME)";
