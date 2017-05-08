@@ -8,7 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import <Adium/AIPlugin.h>
+#import <AdiumLibpurple/AILibpurplePlugin.h>
 
-@interface Lurch4Adium : NSObject <AIPlugin>
+@interface Lurch4Adium : AIPlugin <AILibpurplePlugin>
 
 @end

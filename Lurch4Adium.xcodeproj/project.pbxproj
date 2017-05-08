@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0448A9991EBFEA9800FA8A2A /* AdiumLibpurple.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0448A9981EBFEA9800FA8A2A /* AdiumLibpurple.framework */; };
+		0448A9A31EC0090700FA8A2A /* Adium.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0448A9A21EC0090700FA8A2A /* Adium.framework */; };
 		0448A9A71EC0219600FA8A2A /* carbons.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0448A9A61EC0219600FA8A2A /* carbons.a */; };
 		0448A9A91EC0219C00FA8A2A /* lurch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0448A9A81EC0219C00FA8A2A /* lurch.a */; };
 		04DB663C1EBC1F3600FAF0F3 /* AIUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04DB663B1EBC1F3600FAF0F3 /* AIUtilities.framework */; };
@@ -14,6 +16,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0448A9981EBFEA9800FA8A2A /* AdiumLibpurple.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdiumLibpurple.framework; path = "Frameworks/adium/build/Release-Debug/AdiumLibpurple.framework"; sourceTree = "<group>"; };
+		0448A9A21EC0090700FA8A2A /* Adium.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Adium.framework; path = "Frameworks/adium/build/Release-Debug/Adium.framework"; sourceTree = "<group>"; };
 		0448A9A61EC0219600FA8A2A /* carbons.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = carbons.a; path = vendor/carbons/build/carbons.a; sourceTree = "<group>"; };
 		0448A9A81EC0219C00FA8A2A /* lurch.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = lurch.a; path = vendor/lurch/build/lurch.a; sourceTree = "<group>"; };
 		04DB66311EBBFF4900FAF0F3 /* Lurch4Adium.AdiumPlugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Lurch4Adium.AdiumPlugin; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -29,6 +33,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				04DB663C1EBC1F3600FAF0F3 /* AIUtilities.framework in Frameworks */,
+				0448A9A31EC0090700FA8A2A /* Adium.framework in Frameworks */,
+				0448A9991EBFEA9800FA8A2A /* AdiumLibpurple.framework in Frameworks */,
 				0448A9A71EC0219600FA8A2A /* carbons.a in Frameworks */,
 				0448A9A91EC0219C00FA8A2A /* lurch.a in Frameworks */,
 			);
