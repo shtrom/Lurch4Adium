@@ -49,7 +49,7 @@ $(ADIUM_FRAMEWORK_PATH)/build/Release-Debug/AIUtilities.framework/AIUtilities: $
 $(ADIUM_FRAMEWORK_PATH)/build/Release-Debug/Adium.framework/AIUtilities: $(ADIUM_FRAMEWORK_PATH)/.built
 $(ADIUM_FRAMEWORK_PATH)/build/Release-Debug/AdiumLibpurple.framework/AIUtilities: $(ADIUM_FRAMEWORK_PATH)/.built
 $(ADIUM_FRAMEWORK_PATH)/.built: $(ADIUM_FRAMEWORK_PATH)/.checkout
-	cd $(ADIUM_FRAMEWORK_PATH)/; $(MAKE) adium
+	$(MAKE) -C $(ADIUM_FRAMEWORK_PATH) adium
 	touch $(ADIUM_FRAMEWORK_PATH)/.built
 
 $(ADIUM_FRAMEWORK_PATH)/Frameworks/libpurple.framework/libpurple: $(ADIUM_FRAMEWORK_PATH)/.checkout
@@ -59,11 +59,11 @@ $(ADIUM_FRAMEWORK_PATH)/.checkout:
 	cd $(ADIUM_FRAMEWORK_PATH); $(HG) checkout $(ADIUM_VERSION)
 	touch $(ADIUM_FRAMEWORK_PATH)/.checkout
 
-vendor/lurch/build/lurch.a: $(ADIUM_FRAMEWORK_PATH)/Frameworks/libpurple.framework/libpurple
-	$(MAKE) -C vendor/lurch "LIBPURPLE_CFLAGS=$(LIBPURPLE_FRAMEWORK_CFLAGS)" "LIBPURPLE_LDFLAGS=$(LIBPURPLE_FRAMEWORK_LIBS)" LJABBER= build/lurch.a
-
 vendor/carbons/build/carbons.a: $(ADIUM_FRAMEWORK_PATH)/Frameworks/libpurple.framework/libpurple
 	$(MAKE) -C vendor/carbons "LIBPURPLE_CFLAGS=$(LIBPURPLE_FRAMEWORK_CFLAGS)" "LIBPURPLE_LDFLAGS=$(LIBPURPLE_FRAMEWORK_LIBS)" LJABBER= build/carbons.a
+
+vendor/lurch/build/lurch.a: $(ADIUM_FRAMEWORK_PATH)/Frameworks/libpurple.framework/libpurple vendor/mxml/libmxml.a
+	$(MAKE) -C vendor/lurch "LIBPURPLE_CFLAGS=$(LIBPURPLE_FRAMEWORK_CFLAGS)" "LIBPURPLE_LDFLAGS=$(LIBPURPLE_FRAMEWORK_LIBS)" LJABBER= build/lurch.a
 
 vendor/mxml/libmxml.a: vendor/mxml/Makefile
 	$(MAKE) -C vendor/mxml libmxml.a
@@ -72,13 +72,13 @@ vendor/mxml/Makefile:
 
 clean: clean-adium clean-carbons clean-lurch clean-l4a
 clean-carbons:
-	cd vendor/carbons; $(MAKE) clean
+	$(MAKE) -C vendor/carbons clean
 clean-adium:
-	(test -d Frameworks/adium && cd Frameworks/adium && $(MAKE) clean) || true
+	(test -d Frameworks/adium && $(MAKE) -C Frameworks/adium cd Frameworks/adium clean) || true
 clean-l4a:
 	rm -rf build/
 clean-lurch:
-	cd vendor/lurch; $(MAKE) clean
+	$(MAKE) -C vendor/lurch clean-all
 clean-mxml:
 	$(MAKE) -C vendor/mxml clean
 
