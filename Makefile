@@ -3,6 +3,8 @@ BUILDCONFIGURATION=Release
 
 CWD=$(shell pwd)
 ADIUM_FRAMEWORK_PATH=$(CWD)/Frameworks/adium
+GLIB_FRAMEWORK_PATH=$(ADIUM_FRAMEWORK_PATH)/Frameworks/libglib.framework
+GLIB_FRAMEWORK_CFLAGS=$(addprefix -I,$(wildcard $(ADIUM_FRAMEWORK_PATH)/Frameworks/libglib.framework/Headers))
 LIBPURPLE_FRAMEWORK_PATH=$(ADIUM_FRAMEWORK_PATH)/Frameworks/libpurple.framework
 LIBPURPLE_FRAMEWORK_CFLAGS=$(addprefix -I,$(wildcard $(ADIUM_FRAMEWORK_PATH)/Frameworks/libpurple.framework/Headers))
 LIBPURPLE_FRAMEWORK_LIBS=$(wildcard $(ADIUM_FRAMEWORK_PATH)/Frameworks/lib*.framework/lib*)
@@ -60,7 +62,15 @@ $(ADIUM_FRAMEWORK_PATH)/.checkout:
 	touch $(ADIUM_FRAMEWORK_PATH)/.checkout
 
 vendor/carbons/build/carbons.a: $(ADIUM_FRAMEWORK_PATH)/Frameworks/libpurple.framework/libpurple
-	$(MAKE) -C vendor/carbons "LIBPURPLE_CFLAGS=$(LIBPURPLE_FRAMEWORK_CFLAGS)" "LIBPURPLE_LDFLAGS=$(LIBPURPLE_FRAMEWORK_LIBS)" LJABBER= build/carbons.a
+	$(MAKE) -C vendor/carbons \
+		"GLIB_CFLAGS=$(GLIB_FRAMEWORK_CFLAGS)" \
+		"GLIB_LDFLAGS=$(GLIB_FRAMEWORK_LIBS)" \
+		"LIBPURPLE_CFLAGS=$(LIBPURPLE_FRAMEWORK_CFLAGS)" \
+		"LIBPURPLE_LDFLAGS=$(LIBPURPLE_FRAMEWORK_LIBS)" \
+		"XML2_CFLAGS=-I/usr/include/libxml2" \
+		"XML2_LDFLAGS=" \
+		LJABBER= \
+		build/carbons.a
 
 vendor/lurch/build/lurch.a: $(ADIUM_FRAMEWORK_PATH)/Frameworks/libpurple.framework/libpurple vendor/mxml/libmxml.a
 	$(MAKE) -C vendor/lurch "LIBPURPLE_CFLAGS=$(LIBPURPLE_FRAMEWORK_CFLAGS)" "LIBPURPLE_LDFLAGS=$(LIBPURPLE_FRAMEWORK_LIBS)" LJABBER= build/lurch.a
