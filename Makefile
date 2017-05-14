@@ -3,11 +3,25 @@ BUILDCONFIGURATION=Release
 
 CWD=$(shell pwd)
 ADIUM_FRAMEWORK_PATH=$(CWD)/Frameworks/adium
+
 GLIB_FRAMEWORK_PATH=$(ADIUM_FRAMEWORK_PATH)/Frameworks/libglib.framework
-GLIB_FRAMEWORK_CFLAGS=$(addprefix -I,$(wildcard $(ADIUM_FRAMEWORK_PATH)/Frameworks/libglib.framework/Headers))
+GLIB_CFLAGS=$(addprefix -I,$(wildcard $(GLIB_FRAMEWORK_PATH)/Headers))
+
 LIBPURPLE_FRAMEWORK_PATH=$(ADIUM_FRAMEWORK_PATH)/Frameworks/libpurple.framework
-LIBPURPLE_FRAMEWORK_CFLAGS=$(addprefix -I,$(wildcard $(ADIUM_FRAMEWORK_PATH)/Frameworks/libpurple.framework/Headers))
-LIBPURPLE_FRAMEWORK_LIBS=$(wildcard $(ADIUM_FRAMEWORK_PATH)/Frameworks/lib*.framework/lib*)
+LIBPURPLE_CFLAGS=$(addprefix -I,$(wildcard $(LIBPURPLE_FRAMEWORK_PATH)/Headers))
+LIBPURPLE_LDFLAGS=$(wildcard $(ADIUM_FRAMEWORK_PATH)/Frameworks/lib*.framework/lib*)
+
+LIBGPGPERROR_FRAMEWORK_PATH=$(ADIUM_FRAMEWORK_PATH)/Frameworks/libgpgerror.framework
+
+LIBGCRYPT_FRAMEWORK_PATH=$(ADIUM_FRAMEWORK_PATH)/Frameworks/libgcrypt.framework
+LIBGCRYPT_CFLAGS=$(addprefix -I,$(wildcard $(LIBGCRYPT_FRAMEWORK_PATH)/Headers) \
+		$(wildcard $(LIBGPGPERROR_FRAMEWORK_PATH)/Headers))
+LIBGCRYPT_LDFLAGS=$(wildcard $(LIBGCRYPT_FRAMEWORK_PATH)/lib*) \
+		  $(wildcard $(LIBGPGPERROR_FRAMEWORK_PATH)/lib*)
+
+MXML_PATH=$(CWD)/vendor/mxml
+MXML_CFLAGS=$(addprefix -I,$(wildcard $(MXML_PATH)))
+MXML_LDLAGS=$(addprefix -L,$(wildcard $(MXML_PATH)))
 
 HG=hg
 HGRC=~/.hgrc
@@ -16,7 +30,7 @@ XCODEBUILD?=xcodebuild
 
 all: build-l4a
 
-prepare: prepare-vendor build-adium build-lurch build-carbons build-l4a
+prepare: prepare-vendor
 
 build-adium:
 	$(ADIUM_FRAMEWORK_PATH)/build/Release-Debug/AIUtilities.framework/AIUtilities \
@@ -37,6 +51,8 @@ build/%/Lurch4Adium.AdiumPlugin: Lurch4Adium.xcodeproj/project.pbxproj \
 	Lurch4Adium.m
 	$(XCODEBUILD) -project Lurch4Adium.xcodeproj -configuration $(BUILDCONFIGURATION) build
 
+vendor/lurch/Makefile: prepare-vendor
+vendor/carbon/Makefile: prepare-vendor
 prepare-vendor:
 	git submodule update --init --recursive
 
@@ -61,19 +77,31 @@ $(ADIUM_FRAMEWORK_PATH)/.checkout:
 	cd $(ADIUM_FRAMEWORK_PATH); $(HG) checkout $(ADIUM_VERSION)
 	touch $(ADIUM_FRAMEWORK_PATH)/.checkout
 
-vendor/carbons/build/carbons.a: $(ADIUM_FRAMEWORK_PATH)/Frameworks/libpurple.framework/libpurple
+vendor/carbons/build/carbons.a: vendor/carbons/Makefile $(ADIUM_FRAMEWORK_PATH)/Frameworks/libpurple.framework/libpurple
 	$(MAKE) -C vendor/carbons \
-		"GLIB_CFLAGS=$(GLIB_FRAMEWORK_CFLAGS)" \
-		"GLIB_LDFLAGS=$(GLIB_FRAMEWORK_LIBS)" \
-		"LIBPURPLE_CFLAGS=$(LIBPURPLE_FRAMEWORK_CFLAGS)" \
-		"LIBPURPLE_LDFLAGS=$(LIBPURPLE_FRAMEWORK_LIBS)" \
+		"GLIB_CFLAGS=$(GLIB_CFLAGS)" \
+		"GLIB_LDFLAGS=$(GLIB_LDFLAGS)" \
+		"LIBPURPLE_CFLAGS=$(LIBPURPLE_CFLAGS)" \
+		"LIBPURPLE_LDFLAGS=$(LIBPURPLE_LDFLAGS)" \
 		"XML2_CFLAGS=-I/usr/include/libxml2" \
 		"XML2_LDFLAGS=" \
 		LJABBER= \
 		build/carbons.a
 
-vendor/lurch/build/lurch.a: $(ADIUM_FRAMEWORK_PATH)/Frameworks/libpurple.framework/libpurple vendor/mxml/libmxml.a
-	$(MAKE) -C vendor/lurch "LIBPURPLE_CFLAGS=$(LIBPURPLE_FRAMEWORK_CFLAGS)" "LIBPURPLE_LDFLAGS=$(LIBPURPLE_FRAMEWORK_LIBS)" LJABBER= build/lurch.a
+vendor/lurch/build/lurch.a: vendor/lurch/Makefile $(ADIUM_FRAMEWORK_PATH)/Frameworks/libpurple.framework/libpurple vendor/mxml/libmxml.a
+	$(MAKE) -C vendor/lurch \
+		"GLIB_CFLAGS=$(GLIB_CFLAGS)" \
+		"GLIB_LDFLAGS=$(GLIB_LDFLAGS)" \
+		"LIBPURPLE_CFLAGS=$(LIBPURPLE_CFLAGS)" \
+		"LIBPURPLE_LDFLAGS=$(LIBPURPLE_LDFLAGS)" \
+		"LIBGCRYPT_CFLAGS=$(LIBGCRYPT_CFLAGS)" \
+		"LIBGCRYPT_LDFLAGS=$(LIBGCRYPT_LDFLAGS)" \
+		"MXML_CFLAGS=$(MXML_CFLAGS)" \
+		"MXML_LDFLAGS=$(MXML_LDFLAGS)" \
+		"XML2_CFLAGS=-I/usr/include/libxml2" \
+		"XML2_LDFLAGS=" \
+		LJABBER= \
+		build/lurch.a
 
 vendor/mxml/libmxml.a: vendor/mxml/Makefile
 	$(MAKE) -C vendor/mxml libmxml.a
