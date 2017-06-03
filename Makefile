@@ -53,8 +53,10 @@ build/%/Lurch4Adium.AdiumPlugin: Lurch4Adium.xcodeproj/project.pbxproj \
 
 vendor/lurch/Makefile: prepare-vendor
 vendor/carbon/Makefile: prepare-vendor
-prepare-vendor:
+prepare-vendor: vendor/.updated
+vendor/.updated:
 	git submodule update --init --recursive
+	touch $@
 
 fix-hg-conf:
 	grep -q hg.adium.im:minimumprotocol $(HGRC) 2>/dev/null \
