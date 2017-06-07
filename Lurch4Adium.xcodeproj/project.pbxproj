@@ -38,7 +38,7 @@
 		0448A9CC1EC0385800FA8A2A /* libomemo-conversations.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libomemo-conversations.a"; path = "vendor/lurch/lib/libomemo/build/libomemo-conversations.a"; sourceTree = "<group>"; };
 		0448A9CE1EC0387F00FA8A2A /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		0448A9D01EC0388500FA8A2A /* libxml2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.tbd; path = usr/lib/libxml2.tbd; sourceTree = SDKROOT; };
-		04DB66311EBBFF4900FAF0F3 /* Lurch4Adium.AdiumPlugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Lurch4Adium.AdiumPlugin; sourceTree = BUILT_PRODUCTS_DIR; };
+		04DB66311EBBFF4900FAF0F3 /* Lurch4Adium.AdiumLibpurplePlugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Lurch4Adium.AdiumLibpurplePlugin; sourceTree = BUILT_PRODUCTS_DIR; };
 		04DB66341EBBFF4900FAF0F3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		04DB663B1EBC1F3600FAF0F3 /* AIUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AIUtilities.framework; path = "Frameworks/adium/build/Release-Debug/AIUtilities.framework"; sourceTree = "<group>"; };
 		04DB66401EBC202800FAF0F3 /* Lurch4Adium.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Lurch4Adium.h; sourceTree = "<group>"; };
@@ -84,7 +84,7 @@
 		04DB66321EBBFF4900FAF0F3 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				04DB66311EBBFF4900FAF0F3 /* Lurch4Adium.AdiumPlugin */,
+				04DB66311EBBFF4900FAF0F3 /* Lurch4Adium.AdiumLibpurplePlugin */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -136,7 +136,7 @@
 			);
 			name = Lurch4Adium;
 			productName = Lurch4Adium;
-			productReference = 04DB66311EBBFF4900FAF0F3 /* Lurch4Adium.AdiumPlugin */;
+			productReference = 04DB66311EBBFF4900FAF0F3 /* Lurch4Adium.AdiumLibpurplePlugin */;
 			productType = "com.apple.product-type.bundle";
 		};
 /* End PBXNativeTarget section */
@@ -321,7 +321,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = net.ssji.narf.Lurch4Adium;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				WRAPPER_EXTENSION = AdiumPlugin;
+				WRAPPER_EXTENSION = AdiumLibpurplePlugin;
 			};
 			name = Debug;
 		};
@@ -348,7 +348,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = net.ssji.narf.Lurch4Adium;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				WRAPPER_EXTENSION = AdiumPlugin;
+				WRAPPER_EXTENSION = AdiumLibpurplePlugin;
 			};
 			name = Release;
 		};

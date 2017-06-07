@@ -11,7 +11,10 @@ This project packages gkdr's [lurch] and [carbons] plugins for
 multi-device federated conversations.
 
 The plugin boilerplate comes from the Adium Tutorial [adium-plugin-tutorial],
-which still seems to be relevant as of Sierra (10.12.4)/Xcode 8.3.2.
+which still seems to be relevant as of Sierra (10.12.4)/Xcode 8.3.2. One
+notable difference, is, however, that libpurple plugins need to use the
+`AdiumLibpurplePlugin` wrapper extension, so the `installLibpurplePlugin` and
+`loadLibpurplePlugin` methods of the `AILibpurplePlugin` class are called.
 
 Requirements
 ------------
