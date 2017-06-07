@@ -4,8 +4,6 @@ Lurch4Adium
 An attempt at bringing [OMEMO] to [Adium]. This is just a packaging effort.
 All credit goes to Richard Bayerle [gkdr] for writing the actual functionality.
 
-**tl;dr:** This is an early work in progress. It just doesn't work at the moment.
-
 This project packages gkdr's [lurch] and [carbons] plugins for
 [Pidgin]/[libpurple] as an Adium Xtra, so we can finaly have low-friction
 multi-device federated conversations.
@@ -66,15 +64,14 @@ by entering
 
     /carbons on
 
-in any chat window. **While this seems to work, I'm not sure it actually does
-what it should.**
+in any chat window to enable carbons for this account.
 
 You should similarly be able to interact with lurch and enable OMEMO through
 the `lurch` command. See
 
     /lurch help
 
-for more details. **This is likely broken at the moment.**
+for more details.
 
 That's it for now.
 
