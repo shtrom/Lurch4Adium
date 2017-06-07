@@ -1,3 +1,6 @@
 Frameworks/adium
 build/*
 **/.DS_Store
+*.swp
+.updated
+*xc*data
