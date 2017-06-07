@@ -59,7 +59,7 @@ the _Xtras manager_.
 Usage
 -----
 
-If this were to work, you should be able to enable carbons for a Jabber account
+You should be able to enable carbons for a Jabber account
 by entering
 
     /carbons on
@@ -72,8 +72,6 @@ the `lurch` command. See
     /lurch help
 
 for more details.
-
-That's it for now.
 
 
 [OMEMO]: https://conversations.im/omemo/
