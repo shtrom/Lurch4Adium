@@ -19,6 +19,8 @@
 //
 
 #import "Lurch4Adium.h"
+#import "vendor/carbons/src/carbons.h"
+#import "vendor/lurch/src/lurch.h"
 
 extern void purple_init_carbons_plugin();
 extern void purple_init_lurch_plugin();
@@ -45,12 +47,25 @@ extern void purple_init_lurch_plugin();
 
 - (NSString *)pluginAuthor
 {
-	return @"Olivier Mehani";
+	return @"Olivier Mehani <shtrom+l4a@ssji.net>";
+}
+
+-(NSString *)pluginVersion
+{
+	return @"0.0.1";
 }
 
 -(NSString *)pluginDescription
 {
-	return @"OMEMO multi-client end-to-end encryption";
+	return @"OMEMO multi-client end-to-end encryption\n"
+		"Heavily reliant an the following libpurple plugins\n"
+		"lurch " LURCH_VERSION " by " LURCH_AUTHOR "\n"
+		"carbons " LURCH_VERSION " by " LURCH_AUTHOR "\n";
+}
+
+-(NSString *)pluginUrl
+{
+	return @"https://github.com/shtrom/Lurch4Adium";
 }
 
 @end
