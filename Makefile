@@ -40,15 +40,15 @@ build-carbons: vendor/carbons/build/carbons.a
 build-lurch: vendor/lurch/build/lurch.a
 build-mxml: vendor/mxml/libmxml.a
 
-build-l4a: build/$(BUILDCONFIGURATION)/Lurch4Adium.AdiumPlugin
-build/%/Lurch4Adium.AdiumPlugin: Lurch4Adium.xcodeproj/project.pbxproj \
+build-l4a: build/$(BUILDCONFIGURATION)/Lurch4Adium.AdiumLibpurplePlugin
+build/%/Lurch4Adium.AdiumLibpurplePlugin: Lurch4Adium.xcodeproj/project.pbxproj \
 	$(ADIUM_FRAMEWORK_PATH)/build/Release-Debug/AIUtilities.framework/AIUtilities \
 	$(ADIUM_FRAMEWORK_PATH)/build/Release-Debug/Adium.framework/AIUtilities \
 	$(ADIUM_FRAMEWORK_PATH)/build/Release-Debug/AdiumLibpurple.framework/AIUtilities \
 	vendor/carbons/build/carbons.a \
 	vendor/lurch/build/lurch.a \
-	Lurch4Adium.h \
-	Lurch4Adium.m
+	Lurch4Adium/Lurch4Adium.h \
+	Lurch4Adium/Lurch4Adium.m
 	$(XCODEBUILD) -project Lurch4Adium.xcodeproj -configuration $(BUILDCONFIGURATION) build
 
 vendor/lurch/Makefile: prepare-vendor

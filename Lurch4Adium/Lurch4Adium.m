@@ -19,8 +19,8 @@
 //
 
 #import "Lurch4Adium.h"
-#import "vendor/carbons/src/carbons.h"
-#import "vendor/lurch/src/lurch.h"
+#import "../vendor/carbons/src/carbons.h"
+#import "../vendor/lurch/src/lurch.h"
 
 extern void purple_init_carbons_plugin();
 extern void purple_init_lurch_plugin();
@@ -52,7 +52,7 @@ extern void purple_init_lurch_plugin();
 
 -(NSString *)pluginVersion
 {
-	return @"0.0.1";
+	return [[[NSBundle bundleForClass:[self class]] infoDictionary] objectForKey:@"CFBundleVersion"];
 }
 
 -(NSString *)pluginDescription
