@@ -1,6 +1,8 @@
 Lurch4Adium
 ===========
 
+[![Flattr this](https://button.flattr.com/flattr-badge-large.png)](https://flattr.com/submit/auto?fid=mr05q0&url=https%3A%2F%2Fgithub.com%2Fshtrom%2FLurch4Adium)
+
 An attempt at bringing [OMEMO] to [Adium]. This is just a packaging effort.
 All credit goes to Richard Bayerle [gkdr] for writing the actual functionality.
 
