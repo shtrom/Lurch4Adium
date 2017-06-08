@@ -21,7 +21,7 @@
 	<key>CFBundleSignature</key>
 	<string>AdIM</string>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>0.0.2</string>
 	<key>NSHumanReadableCopyright</key>
 	<string>Copyright © 2017 Olivier Mehani. GPLv3+</string>
 	<key>NSPrincipalClass</key>
