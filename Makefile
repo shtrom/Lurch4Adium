@@ -1,4 +1,3 @@
-ADIUM_VERSION=adium-1.5.10.4
 BUILDCONFIGURATION=Release
 
 CWD=$(shell pwd)
@@ -22,9 +21,6 @@ LIBGCRYPT_LDFLAGS=$(wildcard $(LIBGCRYPT_FRAMEWORK_PATH)/lib*) \
 MXML_PATH=$(CWD)/vendor/mxml
 MXML_CFLAGS=$(addprefix -I,$(wildcard $(MXML_PATH)))
 MXML_LDLAGS=$(addprefix -L,$(wildcard $(MXML_PATH)))
-
-HG=hg
-HGRC=~/.hgrc
 
 XCODEBUILD?=xcodebuild
 
@@ -51,6 +47,7 @@ build/%/Lurch4Adium.AdiumLibpurplePlugin: Lurch4Adium.xcodeproj/project.pbxproj 
 	Lurch4Adium/Lurch4Adium.m
 	$(XCODEBUILD) -project Lurch4Adium.xcodeproj -configuration $(BUILDCONFIGURATION) build
 
+$(ADIUM_FRAMEWORK_PATH)/Makefile: prepare-vendor
 vendor/lurch/Makefile: prepare-vendor
 vendor/carbon/Makefile: prepare-vendor
 prepare-vendor: vendor/.updated
@@ -64,15 +61,12 @@ Frameworks/:
 $(ADIUM_FRAMEWORK_PATH)/build/Release-Debug/AIUtilities.framework/AIUtilities: $(ADIUM_FRAMEWORK_PATH)/.built
 $(ADIUM_FRAMEWORK_PATH)/build/Release-Debug/Adium.framework/AIUtilities: $(ADIUM_FRAMEWORK_PATH)/.built
 $(ADIUM_FRAMEWORK_PATH)/build/Release-Debug/AdiumLibpurple.framework/AIUtilities: $(ADIUM_FRAMEWORK_PATH)/.built
-$(ADIUM_FRAMEWORK_PATH)/.built: $(ADIUM_FRAMEWORK_PATH)/.checkout
+$(ADIUM_FRAMEWORK_PATH)/.patched: 0001-Fix-Release-Debug-build.patch $(ADIUM_FRAMEWORK_PATH)/Makefile
+	patch -d $(ADIUM_FRAMEWORK_PATH) -p1 < $<
+	touch $@
+$(ADIUM_FRAMEWORK_PATH)/.built: $(ADIUM_FRAMEWORK_PATH)/.patched
 	$(MAKE) -C $(ADIUM_FRAMEWORK_PATH) adium
 	touch $(ADIUM_FRAMEWORK_PATH)/.built
-
-$(ADIUM_FRAMEWORK_PATH)/Frameworks/libpurple.framework/libpurple: $(ADIUM_FRAMEWORK_PATH)/.checkout
-$(ADIUM_FRAMEWORK_PATH)/.checkout:
-	$(HG) clone https://bitbucket.org/adium/adium $(ADIUM_FRAMEWORK_PATH)
-	cd $(ADIUM_FRAMEWORK_PATH); $(HG) checkout $(ADIUM_VERSION)
-	touch $(ADIUM_FRAMEWORK_PATH)/.checkout
 
 vendor/carbons/build/carbons.a: vendor/carbons/Makefile $(ADIUM_FRAMEWORK_PATH)/Frameworks/libpurple.framework/libpurple
 	$(MAKE) -C vendor/carbons \
@@ -118,8 +112,8 @@ clean-mxml:
 	$(MAKE) -C vendor/mxml clean
 
 real-clean: clean
-	rm -rf Frameworks/
-	rm -rf vendor/*/* vendor/*/.*
+	git submodule deinit --all --force
+	rm -f vendor/.updated
 
 .PHONY: all prepare prepare-vendor build clean real-clean \
 	build-adium clean-adium \

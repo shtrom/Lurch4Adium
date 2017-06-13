@@ -51,32 +51,21 @@ One notable difference, is, however, that libpurple plugins need to use the
 `AdiumLibpurplePlugin` wrapper extension, so the `installLibpurplePlugin` and
 `loadLibpurplePlugin` methods of the `AILibpurplePlugin` class are called.
 
-Build Requirements
-------------------
+Building
+--------
 
-### HomeBrew [Homebrew]
+### Build Requirements
 
-Easily installed this way, if you like risk [curlpipesh].
-
-    /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-
-You can then install a few development tools.
-
-    brew install mercurial cmake
-
-### Xcode
-
-The GUI tools are needed. You can get them from the AppStore [xcode-appstore]
-after having sold your soul and given banking details. Apart from that, it's
-free-as-in-beer.
+The XCode GUI tools are needed. You can get them from the AppStore
+[xcode-appstore] after having sold your soul and given banking details. Apart
+from that, it's free-as-in-beer.
 
 You then need to agree to lease out your first born as a receptacle for Steve
 Jobs' soul. This is done as follows.
 
     sudo xcodebuild -license
 
-Building
---------
+### Building
 
     make
 
