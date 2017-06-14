@@ -114,7 +114,7 @@ clean: clean-adium clean-carbons clean-lurch clean-l4a
 clean-carbons:
 	$(MAKE) -C vendor/carbons clean
 clean-adium:
-	(test -d Frameworks/adium && $(MAKE) -C Frameworks/adium cd Frameworks/adium clean) || true
+	(test -d Frameworks/adium && $(MAKE) -C Frameworks/adium Frameworks/adium clean) || true
 clean-l4a:
 	rm -rf build/
 clean-lurch:
