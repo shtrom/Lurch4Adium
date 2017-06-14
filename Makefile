@@ -58,10 +58,6 @@ vendor/.updated:
 	git submodule update --init --recursive
 	touch $@
 
-fix-hg-conf:
-	grep -q hg.adium.im:minimumprotocol $(HGRC) 2>/dev/null \
-		|| (echo '[hostsecurity]'; echo 'hg.adium.im:minimumprotocol=tls1.0') >> $(HGRC)
-
 Frameworks/:
 	mkdir -p $@
 
@@ -74,8 +70,7 @@ $(ADIUM_FRAMEWORK_PATH)/.built: $(ADIUM_FRAMEWORK_PATH)/.checkout
 
 $(ADIUM_FRAMEWORK_PATH)/Frameworks/libpurple.framework/libpurple: $(ADIUM_FRAMEWORK_PATH)/.checkout
 $(ADIUM_FRAMEWORK_PATH)/.checkout:
-	$(MAKE) Frameworks fix-hg-conf # Don't want to rebuild on those targets
-	$(HG) clone https://hg.adium.im/adium $(ADIUM_FRAMEWORK_PATH)
+	$(HG) clone https://bitbucket.org/adium/adium $(ADIUM_FRAMEWORK_PATH)
 	cd $(ADIUM_FRAMEWORK_PATH); $(HG) checkout $(ADIUM_VERSION)
 	touch $(ADIUM_FRAMEWORK_PATH)/.checkout
 
@@ -127,7 +122,7 @@ real-clean: clean
 	rm -rf vendor/*/* vendor/*/.*
 
 .PHONY: all prepare prepare-vendor build clean real-clean \
-	fix-hg-conf build-adium clean-adium \
+	build-adium clean-adium \
 	build-carbons clean-carbons \
 	build-l4a clean-l4a \
 	build-lurch clean-lurch \
