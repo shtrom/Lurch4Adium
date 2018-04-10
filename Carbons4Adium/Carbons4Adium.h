@@ -1,6 +1,6 @@
 //
-//  Lurch4Adium.h
-//  Lurch4Adium
+//  Carbons4Adium.h
+//  Carbons4Adium
 //
 //  Copyright (C) 2017 Olivier Mehani.
 //
@@ -22,6 +22,6 @@
 #import <Adium/AIPlugin.h>
 #import <AdiumLibpurple/AILibpurplePlugin.h>
 
-@interface Lurch4Adium : AIPlugin <AILibpurplePlugin>
+@interface Carbons4Adium : AIPlugin <AILibpurplePlugin>
 
 @end

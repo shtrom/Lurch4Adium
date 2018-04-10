@@ -1,6 +1,6 @@
 //
-//  Lurch4Adium.m
-//  Lurch4Adium
+//  Carbons4Adium.m
+//  Carbons4Adium
 //
 //  Copyright (C) 2017 Olivier Mehani.
 //
@@ -18,14 +18,12 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-#import "Lurch4Adium.h"
+#import "Carbons4Adium.h"
 #import "../vendor/carbons/src/carbons.h"
-#import "../vendor/lurch/src/lurch.h"
 
 extern void purple_init_carbons_plugin();
-extern void purple_init_lurch_plugin();
 
-@implementation Lurch4Adium
+@implementation Carbons4Adium
 
 - (void) installPlugin
 {
@@ -34,7 +32,6 @@ extern void purple_init_lurch_plugin();
 - (void) installLibpurplePlugin
 {
     purple_init_carbons_plugin();
-    purple_init_lurch_plugin();
 }
 
 - (void) loadLibpurplePlugin
@@ -57,10 +54,9 @@ extern void purple_init_lurch_plugin();
 
 -(NSString *)pluginDescription
 {
-	return @"OMEMO multi-client end-to-end encryption\n"
-		"Heavily reliant an the following libpurple plugins\n"
-		"lurch " LURCH_VERSION " by " LURCH_AUTHOR "\n"
-		"carbons " LURCH_VERSION " by " LURCH_AUTHOR "\n";
+	return @"Message carbons plugin\n"
+		"Heavily reliant an the following libpurple plugin\n"
+		"carbons " CARBONS_VERSION " by " CARBONS_AUTHOR "\n";
 }
 
 -(NSString *)pluginUrl

@@ -1,9 +1,3 @@
-[submodule "vendor/lurch"]
-	path = vendor/lurch
-	url = https://github.com/shtrom/libpurple-lurch
 [submodule "vendor/carbons"]
 	path = vendor/carbons
 	url = https://github.com/shtrom/libpurple-carbons
-[submodule "vendor/mxml"]
-	path = vendor/mxml
-	url = https://github.com/michaelrsweet/mxml.git
