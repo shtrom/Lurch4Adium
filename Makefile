@@ -2,6 +2,7 @@ BUILDCONFIGURATION=Release
 
 CWD=$(shell pwd)
 ADIUM_FRAMEWORK_PATH=$(CWD)/Frameworks/adium
+ADIUM_PATCHES=0001-Fix-Release-Debug-build.patch 0002-Reimport-libgcrypt-1.6.2-from-some-checkout-I-had-ly.patch
 
 GLIB_FRAMEWORK_PATH=$(ADIUM_FRAMEWORK_PATH)/Frameworks/libglib.framework
 GLIB_CFLAGS=$(addprefix -I,$(wildcard $(GLIB_FRAMEWORK_PATH)/Headers))
@@ -61,8 +62,8 @@ Frameworks/:
 $(ADIUM_FRAMEWORK_PATH)/build/Release-Debug/AIUtilities.framework/AIUtilities: $(ADIUM_FRAMEWORK_PATH)/.built
 $(ADIUM_FRAMEWORK_PATH)/build/Release-Debug/Adium.framework/AIUtilities: $(ADIUM_FRAMEWORK_PATH)/.built
 $(ADIUM_FRAMEWORK_PATH)/build/Release-Debug/AdiumLibpurple.framework/AIUtilities: $(ADIUM_FRAMEWORK_PATH)/.built
-$(ADIUM_FRAMEWORK_PATH)/.patched: 0001-Fix-Release-Debug-build.patch $(ADIUM_FRAMEWORK_PATH)/Makefile
-	patch -d $(ADIUM_FRAMEWORK_PATH) -p1 < $<
+$(ADIUM_FRAMEWORK_PATH)/.patched: $(ADIUM_PATCHES) $(ADIUM_FRAMEWORK_PATH)/Makefile
+	cat $(ADIUM_PATCHES) | git -C $(ADIUM_FRAMEWORK_PATH)/ am
 	touch $@
 $(ADIUM_FRAMEWORK_PATH)/.built: $(ADIUM_FRAMEWORK_PATH)/.patched
 	$(MAKE) -C $(ADIUM_FRAMEWORK_PATH) adium
@@ -101,9 +102,9 @@ vendor/mxml/Makefile:
 
 clean: clean-adium clean-carbons clean-l4a clean-lurch clean-mxml
 clean-adium:
-	test ! -d $(ADIUM_FRAMEWORK_PATH) || $(MAKE) -C $(ADIUM_FRAMEWORK_PATH) clean
+	test ! -e $(ADIUM_FRAMEWORK_PATH)/.built || $(MAKE) -C $(ADIUM_FRAMEWORK_PATH) clean
 	rm -f $(ADIUM_FRAMEWORK_PATH)/.built
-	test ! -f $(ADIUM_FRAMEWORK_PATH)/.patched || patch -Rd $(ADIUM_FRAMEWORK_PATH) -p1 < 0001-Fix-Release-Debug-build.patch
+	test ! -e $(ADIUM_FRAMEWORK_PATH)/.patched || git -C $(ADIUM_FRAMEWORK_PATH)/ checkout HEAD~$(words $(ADIUM_PATCHES))
 	rm -f $(ADIUM_FRAMEWORK_PATH)/.patched
 clean-carbons:
 	test ! -f vendor/carbons/Makefile || $(MAKE) -C vendor/carbons clean
