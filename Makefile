@@ -66,7 +66,7 @@ $(ADIUM_FRAMEWORK_PATH)/.patched: 0001-Fix-Release-Debug-build.patch $(ADIUM_FRA
 	touch $@
 $(ADIUM_FRAMEWORK_PATH)/.built: $(ADIUM_FRAMEWORK_PATH)/.patched
 	$(MAKE) -C $(ADIUM_FRAMEWORK_PATH) adium
-	touch $(ADIUM_FRAMEWORK_PATH)/.built
+	touch $@
 
 vendor/carbons/build/carbons.a: vendor/carbons/Makefile $(ADIUM_FRAMEWORK_PATH)/Frameworks/libpurple.framework/libpurple
 	$(MAKE) -C vendor/carbons \
@@ -103,6 +103,8 @@ clean: clean-adium clean-carbons clean-l4a clean-lurch clean-mxml
 clean-adium:
 	test ! -d $(ADIUM_FRAMEWORK_PATH) || $(MAKE) -C $(ADIUM_FRAMEWORK_PATH) clean
 	rm -f $(ADIUM_FRAMEWORK_PATH)/.built
+	test ! -f $(ADIUM_FRAMEWORK_PATH)/.patched || patch -Rd $(ADIUM_FRAMEWORK_PATH) -p1 < 0001-Fix-Release-Debug-build.patch
+	rm -f $(ADIUM_FRAMEWORK_PATH)/.patched
 clean-carbons:
 	test ! -f vendor/carbons/Makefile || $(MAKE) -C vendor/carbons clean
 clean-l4a:
