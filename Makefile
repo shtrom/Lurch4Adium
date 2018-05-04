@@ -49,7 +49,7 @@ build/%/Lurch4Adium.AdiumLibpurplePlugin: Lurch4Adium.xcodeproj/project.pbxproj 
 
 $(ADIUM_FRAMEWORK_PATH)/Makefile: prepare-vendor
 vendor/lurch/Makefile: prepare-vendor
-vendor/carbon/Makefile: prepare-vendor
+vendor/carbons/Makefile: prepare-vendor
 prepare-vendor: vendor/.updated
 vendor/.updated:
 	git submodule update --init --recursive
