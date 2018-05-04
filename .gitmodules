@@ -7,3 +7,6 @@
 [submodule "vendor/mxml"]
 	path = vendor/mxml
 	url = https://github.com/michaelrsweet/mxml.git
+[submodule "Frameworks/adium"]
+	path = Frameworks/adium
+	url = https://github.com/adium/adium
