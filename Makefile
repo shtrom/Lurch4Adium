@@ -73,7 +73,7 @@ vendor/carbons/build/carbons.a: vendor/carbons/Makefile $(ADIUM_FRAMEWORK_PATH)/
 	$(MAKE) -C vendor/carbons \
 		"GLIB_CFLAGS=$(GLIB_CFLAGS)" \
 		"GLIB_LDFLAGS=$(GLIB_LDFLAGS)" \
-		"LIBPURPLE_CFLAGS=$(LIBPURPLE_CFLAGS)" \
+		"LIBPURPLE_CFLAGS=$(LIBPURPLE_CFLAGS) -DPURPLE_STATIC_PRPL" \
 		"LIBPURPLE_LDFLAGS=$(LIBPURPLE_LDFLAGS)" \
 		"XML2_CFLAGS=-I/usr/include/libxml2" \
 		"XML2_LDFLAGS=" \
