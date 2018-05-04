@@ -99,17 +99,18 @@ vendor/mxml/libmxml.a: vendor/mxml/Makefile
 vendor/mxml/Makefile:
 	cd vendor/mxml; ./configure --disable-shared --disable-threads --disable-debug
 
-clean: clean-adium clean-carbons clean-lurch clean-l4a
-clean-carbons:
-	$(MAKE) -C vendor/carbons clean
+clean: clean-adium clean-carbons clean-l4a clean-lurch clean-mxml
 clean-adium:
-	(test -d Frameworks/adium && $(MAKE) -C Frameworks/adium Frameworks/adium clean) || true
+	test ! -d $(ADIUM_FRAMEWORK_PATH) || $(MAKE) -C $(ADIUM_FRAMEWORK_PATH) clean
+	rm -f $(ADIUM_FRAMEWORK_PATH)/.built
+clean-carbons:
+	test ! -f vendor/carbons/Makefile || $(MAKE) -C vendor/carbons clean
 clean-l4a:
 	rm -rf build/
 clean-lurch:
-	$(MAKE) -C vendor/lurch clean-all
+	test ! -f vendor/lurch/Makefile || $(MAKE) -C vendor/lurch clean-all
 clean-mxml:
-	$(MAKE) -C vendor/mxml clean
+	test ! -f vendor/mxml/Makefile || $(MAKE) -C vendor/mxml clean
 
 real-clean: clean
 	git submodule deinit --all --force
