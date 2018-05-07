@@ -23,8 +23,8 @@
 #import "../vendor/lurch/src/lurch.h"
 #import "../Frameworks/adium/Frameworks/Adium Framework/Source/ESDebugAILog.h"
 
-extern void purple_init_carbons_plugin();
-extern void purple_init_lurch_plugin();
+extern void purple_init_carbons_plugin(void);
+extern void purple_init_lurch_plugin(void);
 
 @implementation Lurch4Adium
 
