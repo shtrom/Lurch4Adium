@@ -21,6 +21,7 @@
 #import "Lurch4Adium.h"
 #import "../vendor/carbons/src/carbons.h"
 #import "../vendor/lurch/src/lurch.h"
+#import "../Frameworks/adium/Frameworks/Adium Framework/Source/ESDebugAILog.h"
 
 extern void purple_init_carbons_plugin();
 extern void purple_init_lurch_plugin();
@@ -33,6 +34,10 @@ extern void purple_init_lurch_plugin();
 
 - (void) installLibpurplePlugin
 {
+    if (AIDebugLoggingIsEnabled()) {
+	    purple_debug_init();
+	    purple_debug_set_enabled(true);
+    }
     purple_init_carbons_plugin();
     purple_init_lurch_plugin();
 }
