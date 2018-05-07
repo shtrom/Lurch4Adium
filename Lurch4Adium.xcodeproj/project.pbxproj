@@ -193,7 +193,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "LIBPATHS=\" \\\n@executable_path/../Frameworks/libpurple.framework/Versions/2.12.0r11b8084bcff4/libpurple \\\n@executable_path/../Frameworks/libglib.framework/Versions/2.42.1/libglib \\\n@executable_path/../Frameworks/libgcrypt.framework/Versions/1.6.2/libgcrypt \\\n\"\n\nfor LIBPATH in ${LIBPATHS}; do\n    LIB=$(basename ${LIBPATH})\n    install_name_tool -change \"$LIBPATH\" \"@executable_path/../Frameworks/${LIB}.framework/${LIB}\" \"${TARGET_BUILD_DIR}/${PRODUCT_NAME}.${WRAPPER_EXTENSION}/Contents/MacOS/${PRODUCT_NAME}\"\ndone";
+			shellScript = "DEPENDENCIES=\"libpurple libglib libgcrypt\";\nLIBPATHS=\"$(cd ${PROJECT_DIR}/Frameworks/adium; for DEP in ${DEPENDENCIES}; do ls Frameworks/${DEP}.framework/Versions/*/${DEP}; done); \"\n\nfor LIBPATH in ${LIBPATHS}; do\n    LIB=$(basename ${LIBPATH})\n install_name_tool -change \"@executable_path/../$LIBPATH\" \"@executable_path/../Frameworks/${LIB}.framework/${LIB}\" \"${TARGET_BUILD_DIR}/${PRODUCT_NAME}.${WRAPPER_EXTENSION}/Contents/MacOS/${PRODUCT_NAME}\"\ndone";
 		};
 /* End PBXShellScriptBuildPhase section */
 
