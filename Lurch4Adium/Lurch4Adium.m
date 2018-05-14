@@ -2,7 +2,7 @@
 //  Lurch4Adium.m
 //  Lurch4Adium
 //
-//  Copyright (C) 2017 Olivier Mehani.
+//  Copyright (C) 2017, 2018 Olivier Mehani.
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
@@ -21,9 +21,10 @@
 #import "Lurch4Adium.h"
 #import "../vendor/carbons/src/carbons.h"
 #import "../vendor/lurch/src/lurch.h"
+#import "../Frameworks/adium/Frameworks/Adium Framework/Source/ESDebugAILog.h"
 
-extern void purple_init_carbons_plugin();
-extern void purple_init_lurch_plugin();
+extern void purple_init_carbons_plugin(void);
+extern void purple_init_lurch_plugin(void);
 
 @implementation Lurch4Adium
 
@@ -33,6 +34,10 @@ extern void purple_init_lurch_plugin();
 
 - (void) installLibpurplePlugin
 {
+    if (AIDebugLoggingIsEnabled()) {
+	    purple_debug_init();
+	    purple_debug_set_enabled(true);
+    }
     purple_init_carbons_plugin();
     purple_init_lurch_plugin();
 }
@@ -58,9 +63,9 @@ extern void purple_init_lurch_plugin();
 -(NSString *)pluginDescription
 {
 	return @"OMEMO multi-client end-to-end encryption\n"
-		"Heavily reliant an the following libpurple plugins\n"
+		"Heavily reliant on the following libpurple plugins\n"
 		"lurch " LURCH_VERSION " by " LURCH_AUTHOR "\n"
-		"carbons " LURCH_VERSION " by " LURCH_AUTHOR "\n";
+		"carbons " CARBONS_VERSION " by " CARBONS_AUTHOR "\n";
 }
 
 -(NSString *)pluginUrl
