@@ -4,9 +4,9 @@ CWD=$(shell pwd)
 ADIUM_FRAMEWORK_PATH=$(CWD)/Frameworks/adium
 ADIUM_PATCHES=0001-Fix-Release-Debug-build.patch 0002-Reimport-libgcrypt-1.6.2-from-some-checkout-I-had-ly.patch
 
-CFLAGS=-mmacosx-version-min=10.5
-CXXFLAGS=-mmacosx-version-min=10.5
-LDFLAGS=-mmacosx-version-min=10.5
+CFLAGS=-mmacosx-version-min=10.8
+CXXFLAGS=-mmacosx-version-min=10.8
+LDFLAGS=-mmacosx-version-min=10.8
 
 GLIB_FRAMEWORK_PATH=$(ADIUM_FRAMEWORK_PATH)/Frameworks/libglib.framework
 GLIB_CFLAGS=$(GFLAGS) $(addprefix -I,$(wildcard $(GLIB_FRAMEWORK_PATH)/Headers))
