@@ -4,24 +4,29 @@ CWD=$(shell pwd)
 ADIUM_FRAMEWORK_PATH=$(CWD)/Frameworks/adium
 ADIUM_PATCHES=0001-Fix-Release-Debug-build.patch 0002-Reimport-libgcrypt-1.6.2-from-some-checkout-I-had-ly.patch
 
+CFLAGS=-mmacosx-version-min=10.5
+CXXFLAGS=-mmacosx-version-min=10.5
+LDFLAGS=-mmacosx-version-min=10.5
+
 GLIB_FRAMEWORK_PATH=$(ADIUM_FRAMEWORK_PATH)/Frameworks/libglib.framework
-GLIB_CFLAGS=$(addprefix -I,$(wildcard $(GLIB_FRAMEWORK_PATH)/Headers))
+GLIB_CFLAGS=$(GFLAGS) $(addprefix -I,$(wildcard $(GLIB_FRAMEWORK_PATH)/Headers))
+GLIB_LDFLAGS=$(LDFLAGS)
 
 LIBPURPLE_FRAMEWORK_PATH=$(ADIUM_FRAMEWORK_PATH)/Frameworks/libpurple.framework
-LIBPURPLE_CFLAGS=$(addprefix -I,$(wildcard $(LIBPURPLE_FRAMEWORK_PATH)/Headers))
-LIBPURPLE_LDFLAGS=$(wildcard $(ADIUM_FRAMEWORK_PATH)/Frameworks/lib*.framework/lib*)
+LIBPURPLE_CFLAGS=$(CFLAGS )$(addprefix -I,$(wildcard $(LIBPURPLE_FRAMEWORK_PATH)/Headers))
+LIBPURPLE_LDFLAGS=$(LDFLAGS) $(wildcard $(ADIUM_FRAMEWORK_PATH)/Frameworks/lib*.framework/lib*)
 
 LIBGPGPERROR_FRAMEWORK_PATH=$(ADIUM_FRAMEWORK_PATH)/Frameworks/libgpgerror.framework
 
 LIBGCRYPT_FRAMEWORK_PATH=$(ADIUM_FRAMEWORK_PATH)/Frameworks/libgcrypt.framework
-LIBGCRYPT_CFLAGS=$(addprefix -I,$(wildcard $(LIBGCRYPT_FRAMEWORK_PATH)/Headers) \
+LIBGCRYPT_CFLAGS=$(CFLAGS) $(addprefix -I,$(wildcard $(LIBGCRYPT_FRAMEWORK_PATH)/Headers) \
 		$(wildcard $(LIBGPGPERROR_FRAMEWORK_PATH)/Headers))
-LIBGCRYPT_LDFLAGS=$(wildcard $(LIBGCRYPT_FRAMEWORK_PATH)/lib*) \
+LIBGCRYPT_LDFLAGS=$(LDFLAGS) $(wildcard $(LIBGCRYPT_FRAMEWORK_PATH)/lib*) \
 		  $(wildcard $(LIBGPGPERROR_FRAMEWORK_PATH)/lib*)
 
 MXML_PATH=$(CWD)/vendor/mxml
-MXML_CFLAGS=$(addprefix -I,$(wildcard $(MXML_PATH)))
-MXML_LDLAGS=$(addprefix -L,$(wildcard $(MXML_PATH)))
+MXML_CFLAGS=$(CFLAGS) $(addprefix -I,$(wildcard $(MXML_PATH)))
+MXML_LDFLAGS=$(LDFLAGS) $(addprefix -L,$(wildcard $(MXML_PATH)))
 
 XCODEBUILD?=xcodebuild
 
@@ -46,7 +51,7 @@ build/%/Lurch4Adium.AdiumLibpurplePlugin: Lurch4Adium.xcodeproj/project.pbxproj 
 	vendor/lurch/build/lurch.a \
 	Lurch4Adium/Lurch4Adium.h \
 	Lurch4Adium/Lurch4Adium.m
-	$(XCODEBUILD) -project Lurch4Adium.xcodeproj -configuration $(BUILDCONFIGURATION) build
+	$(XCODEBUILD) -project Lurch4Adium.xcodeproj -configuration $(BUILDCONFIGURATION) CFLAGS="$(CFLAGS)" CXXFLAGS="$(CXXFLAGS)" LDFLAGS="$(LDFLAGS)" build
 
 $(ADIUM_FRAMEWORK_PATH)/Makefile: prepare-vendor
 vendor/lurch/Makefile: prepare-vendor
@@ -66,7 +71,7 @@ $(ADIUM_FRAMEWORK_PATH)/.patched: $(ADIUM_PATCHES) $(ADIUM_FRAMEWORK_PATH)/Makef
 	cat $(ADIUM_PATCHES) | git -C $(ADIUM_FRAMEWORK_PATH)/ am
 	touch $@
 $(ADIUM_FRAMEWORK_PATH)/.built: $(ADIUM_FRAMEWORK_PATH)/.patched
-	$(MAKE) -C $(ADIUM_FRAMEWORK_PATH) adium
+	$(MAKE) -C $(ADIUM_FRAMEWORK_PATH) CFLAGS="$(CFLAGS)" CXXFLAGS="$(CXXFLAGS)" LDFLAGS="$(LDFLAGS)" adium
 	touch $@
 
 vendor/carbons/build/carbons.a: vendor/carbons/Makefile $(ADIUM_FRAMEWORK_PATH)/Frameworks/libpurple.framework/libpurple
