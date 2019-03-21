@@ -6,6 +6,7 @@ ADIUM_PATCHES= \
 	       0001-Fix-Release-Debug-build.patch \
 	       0002-Reimport-libgcrypt-1.6.2-from-some-checkout-I-had-ly.patch \
 	       0003-Disable-i386-ARCH-in-AutoHyperlinks.patch \
+	       0004-Fix-fileEncoding-in-Slovak-l10n.patch \
 	       # END OF ADIUM_PATCHES
 
 GLIB_FRAMEWORK_PATH=$(ADIUM_FRAMEWORK_PATH)/Frameworks/libglib.framework

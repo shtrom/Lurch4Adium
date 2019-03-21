@@ -1,0 +1,28 @@
+From c9bf041767e33571cebf73946156ebe7ce8636b7 Mon Sep 17 00:00:00 2001
+From: Olivier Mehani <olivier.mehani@learnosity.com>
+Date: Thu, 21 Mar 2019 13:13:33 +1100
+Subject: [PATCH 4/4] Fix fileEncoding in Slovak l10n
+
+Signed-off-by: Olivier Mehani <olivier.mehani@learnosity.com>
+---
+ Adium.xcodeproj/project.pbxproj | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/Adium.xcodeproj/project.pbxproj b/Adium.xcodeproj/project.pbxproj
+index 8f59fd683..863cfc296 100644
+--- a/Adium.xcodeproj/project.pbxproj
++++ b/Adium.xcodeproj/project.pbxproj
+@@ -4629,8 +4629,8 @@
+ 		C6EE434B15C0AB7400A4B96C /* Flap_192@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Flap_192@2x.png"; path = "Resources/Flap_192@2x.png"; sourceTree = "<group>"; };
+ 		C6EE434D15C0AB7F00A4B96C /* Awake_192@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Awake_192@2x.png"; path = "Resources/Awake_192@2x.png"; sourceTree = "<group>"; };
+ 		D10A3A2A122C61EF003B5A7E /* msg-source-destination.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = "msg-source-destination.tiff"; path = "Resources/msg-source-destination.tiff"; sourceTree = "<group>"; };
+-		D182F1B411DFF23700E33AE2 /* sk */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = sk; path = sk.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+-		D182F1B611DFF23700E33AE2 /* sk */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = sk; path = sk.lproj/schema.strings; sourceTree = "<group>"; };
++		D182F1B411DFF23700E33AE2 /* sk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sk; path = sk.lproj/InfoPlist.strings; sourceTree = "<group>"; };
++		D182F1B611DFF23700E33AE2 /* sk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sk; path = sk.lproj/schema.strings; sourceTree = "<group>"; };
+ 		D1B9BFFE14C3ADAE00D03244 /* sl */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xib; name = sl; path = "Plugins/Purple Service/Resources/sl.lproj/ESPurpleZephyrAccountView.xib"; sourceTree = "<group>"; };
+ 		D1B9C00814C3ADF600D03244 /* sl */ = {isa = PBXFileReference; explicitFileType = text.plist.strings; fileEncoding = 10; name = sl; path = "Plugins/Purple Service/Resources/sl.lproj/Localizable.strings"; sourceTree = "<group>"; };
+ 		D1B9C01C14C3AEC300D03244 /* sl */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xib; name = sl; path = "Plugins/WebKit Message View/Resources/sl.lproj/WebKitPreferencesView.xib"; sourceTree = "<group>"; };
+-- 
+2.21.0
+
