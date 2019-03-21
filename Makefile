@@ -24,6 +24,9 @@ LIBGCRYPT_CFLAGS=$(addprefix -I,$(wildcard $(LIBGCRYPT_FRAMEWORK_PATH)/Headers) 
 LIBGCRYPT_LDFLAGS=$(wildcard $(LIBGCRYPT_FRAMEWORK_PATH)/lib*) \
 		  $(wildcard $(LIBGPGPERROR_FRAMEWORK_PATH)/lib*)
 
+LIBXML2_CFLAGS=-I/usr/include/libxml2 \
+	       -I/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/libxml2
+
 MXML_PATH=$(CWD)/vendor/mxml
 MXML_CFLAGS=$(addprefix -I,$(wildcard $(MXML_PATH)))
 MXML_LDLAGS=$(addprefix -L,$(wildcard $(MXML_PATH)))
@@ -82,7 +85,7 @@ vendor/carbons/build/carbons.a: vendor/carbons/Makefile $(ADIUM_FRAMEWORK_PATH)/
 		"GLIB_LDFLAGS=$(GLIB_LDFLAGS)" \
 		"LIBPURPLE_CFLAGS=$(LIBPURPLE_CFLAGS) -DPURPLE_STATIC_PRPL" \
 		"LIBPURPLE_LDFLAGS=$(LIBPURPLE_LDFLAGS)" \
-		"XML2_CFLAGS=-I/usr/include/libxml2" \
+		"XML2_CFLAGS=$(LIBXML2_CFLAGS)" \
 		"XML2_LDFLAGS=" \
 		LJABBER= \
 		build/carbons.a
@@ -97,7 +100,7 @@ vendor/lurch/build/lurch.a: vendor/lurch/Makefile $(ADIUM_FRAMEWORK_PATH)/Framew
 		"LIBGCRYPT_LDFLAGS=$(LIBGCRYPT_LDFLAGS)" \
 		"MXML_CFLAGS=$(MXML_CFLAGS)" \
 		"MXML_LDFLAGS=$(MXML_LDFLAGS)" \
-		"XML2_CFLAGS=-I/usr/include/libxml2" \
+		"XML2_CFLAGS=$(LIBXML2_CFLAGS)" \
 		"XML2_LDFLAGS=" \
 		LJABBER= \
 		build/lurch.a
