@@ -14,6 +14,9 @@ Versioning](http://semver.org/spec/v2.0.0.html).
 ### Added
 - This Changelog!
 
+### Fixed
+- Fix build with Xcode 10.1
+
 
 ## v0.0.3
 
