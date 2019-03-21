@@ -2,7 +2,11 @@ BUILDCONFIGURATION=Release
 
 CWD=$(shell pwd)
 ADIUM_FRAMEWORK_PATH=$(CWD)/Frameworks/adium
-ADIUM_PATCHES=0001-Fix-Release-Debug-build.patch 0002-Reimport-libgcrypt-1.6.2-from-some-checkout-I-had-ly.patch
+ADIUM_PATCHES= \
+	       0001-Fix-Release-Debug-build.patch \
+	       0002-Reimport-libgcrypt-1.6.2-from-some-checkout-I-had-ly.patch \
+	       0003-Disable-i386-ARCH-in-AutoHyperlinks.patch \
+	       # END OF ADIUM_PATCHES
 
 GLIB_FRAMEWORK_PATH=$(ADIUM_FRAMEWORK_PATH)/Frameworks/libglib.framework
 GLIB_CFLAGS=$(addprefix -I,$(wildcard $(GLIB_FRAMEWORK_PATH)/Headers))
@@ -63,7 +67,9 @@ $(ADIUM_FRAMEWORK_PATH)/build/Release-Debug/AIUtilities.framework/AIUtilities: $
 $(ADIUM_FRAMEWORK_PATH)/build/Release-Debug/Adium.framework/AIUtilities: $(ADIUM_FRAMEWORK_PATH)/.built
 $(ADIUM_FRAMEWORK_PATH)/build/Release-Debug/AdiumLibpurple.framework/AIUtilities: $(ADIUM_FRAMEWORK_PATH)/.built
 $(ADIUM_FRAMEWORK_PATH)/.patched: $(ADIUM_PATCHES) $(ADIUM_FRAMEWORK_PATH)/Makefile
-	cat $(ADIUM_PATCHES) | git -C $(ADIUM_FRAMEWORK_PATH)/ am
+	for PATCH in $(ADIUM_PATCHES); do \
+		cat $${PATCH} | git -C $(ADIUM_FRAMEWORK_PATH)/ am; \
+	done
 	touch $@
 $(ADIUM_FRAMEWORK_PATH)/.built: $(ADIUM_FRAMEWORK_PATH)/.patched
 	$(MAKE) -C $(ADIUM_FRAMEWORK_PATH) adium
