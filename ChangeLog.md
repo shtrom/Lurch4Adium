@@ -9,7 +9,7 @@ Versioning](http://semver.org/spec/v2.0.0.html).
 ## [Unreleased]
 ### Changed
 - Bump lurch to 0.6.8
-- Bump carbons to 0.2.1
+- Bump carbons to 0.2.2
 
 ### Added
 - This Changelog!
