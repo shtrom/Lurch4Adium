@@ -10,6 +10,7 @@ Versioning](http://semver.org/spec/v2.0.0.html).
 ### Changed
 - Bump lurch to 0.6.8
 - Bump carbons to 0.2.2
+- Try out https://github.com/wnereiz'l OMEMO indication branch
 
 ### Added
 - This Changelog!
