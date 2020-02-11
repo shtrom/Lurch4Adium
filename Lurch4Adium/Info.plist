@@ -17,11 +17,11 @@
 	<key>CFBundlePackageType</key>
 	<string>BNDL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>0.0.4-pre</string>
+	<string>0.0.4-pre2</string>
 	<key>CFBundleSignature</key>
 	<string>AdIM</string>
 	<key>CFBundleVersion</key>
-	<string>0.0.4-pre</string>
+	<string>0.0.4-pre2</string>
 	<key>NSHumanReadableCopyright</key>
 	<string>Copyright © 2017--2020 Olivier Mehani. GPLv3+</string>
 	<key>NSPrincipalClass</key>
