@@ -2,12 +2,7 @@ BUILDCONFIGURATION=Release
 
 CWD=$(shell pwd)
 ADIUM_FRAMEWORK_PATH=$(CWD)/Frameworks/adium
-ADIUM_PATCHES= \
-	       0001-Fix-Release-Debug-build.patch \
-	       0002-Reimport-libgcrypt-1.6.2-from-some-checkout-I-had-ly.patch \
-	       0003-Disable-i386-ARCH-in-AutoHyperlinks.patch \
-	       0004-Fix-fileEncoding-in-Slovak-l10n.patch \
-	       # END OF ADIUM_PATCHES
+ADIUM_PATCHES=$(sort $(wildcard *.adium.patch))
 
 GLIB_FRAMEWORK_PATH=$(ADIUM_FRAMEWORK_PATH)/Frameworks/libglib.framework
 GLIB_CFLAGS=$(addprefix -I,$(wildcard $(GLIB_FRAMEWORK_PATH)/Headers))
@@ -37,10 +32,8 @@ all: build-l4a
 
 prepare: prepare-vendor
 
-build-adium:
-	$(ADIUM_FRAMEWORK_PATH)/build/Release-Debug/AIUtilities.framework/AIUtilities \
-	$(ADIUM_FRAMEWORK_PATH)/build/Release-Debug/Adium.framework/AIUtilities \
-	$(ADIUM_FRAMEWORK_PATH)/build/Release-Debug/AdiumLibpurple.framework/AIUtilities
+patch-adium: $(ADIUM_FRAMEWORK_PATH)/.patched
+build-adium: $(ADIUM_FRAMEWORK_PATH)/.built
 build-carbons: vendor/carbons/build/carbons.a
 build-lurch: vendor/lurch/build/lurch.a
 build-mxml: vendor/mxml/libmxml.a
@@ -75,7 +68,10 @@ $(ADIUM_FRAMEWORK_PATH)/.patched: $(ADIUM_PATCHES) $(ADIUM_FRAMEWORK_PATH)/Makef
 		cat $${PATCH} | git -C $(ADIUM_FRAMEWORK_PATH)/ am; \
 	done
 	touch $@
-$(ADIUM_FRAMEWORK_PATH)/.built: $(ADIUM_FRAMEWORK_PATH)/.patched
+$(ADIUM_FRAMEWORK_PATH)/.built: $(ADIUM_FRAMEWORK_PATH)/.patched \
+	$(ADIUM_FRAMEWORK_PATH)/build/Release-Debug/AIUtilities.framework/AIUtilities \
+	$(ADIUM_FRAMEWORK_PATH)/build/Release-Debug/Adium.framework/AIUtilities \
+	$(ADIUM_FRAMEWORK_PATH)/build/Release-Debug/AdiumLibpurple.framework/AIUtilities
 	$(MAKE) -C $(ADIUM_FRAMEWORK_PATH) adium
 	touch $@
 
@@ -115,6 +111,7 @@ clean-adium:
 	test ! -e $(ADIUM_FRAMEWORK_PATH)/.built || $(MAKE) -C $(ADIUM_FRAMEWORK_PATH) clean
 	rm -f $(ADIUM_FRAMEWORK_PATH)/.built
 	test ! -e $(ADIUM_FRAMEWORK_PATH)/.patched || git -C $(ADIUM_FRAMEWORK_PATH)/ checkout HEAD~$(words $(ADIUM_PATCHES))
+	rm -rf /Users/omehani/src/Lurch4Adium/.git/modules/Frameworks/adium/rebase-apply/
 	rm -f $(ADIUM_FRAMEWORK_PATH)/.patched
 clean-carbons:
 	test ! -f vendor/carbons/Makefile || $(MAKE) -C vendor/carbons clean
