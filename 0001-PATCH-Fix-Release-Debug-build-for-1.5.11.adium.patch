@@ -1,0 +1,44 @@
+From d324bd424cf26dfcc6b8378fa1d54c1c97e31356 Mon Sep 17 00:00:00 2001
+From: Olivier Mehani <olivier.mehani@learnosity.com>
+Date: Wed, 12 Feb 2020 11:40:39 +1100
+Subject: [PATCH] [PATCH] Fix Release-Debug build for 1.5.11
+
+Signed-off-by: Olivier Mehani <olivier.mehani@learnosity.com>
+---
+ Adium.xcodeproj/project.pbxproj | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/Adium.xcodeproj/project.pbxproj b/Adium.xcodeproj/project.pbxproj
+index 0251567b9..750b449c7 100644
+--- a/Adium.xcodeproj/project.pbxproj
++++ b/Adium.xcodeproj/project.pbxproj
+@@ -12111,7 +12111,7 @@
+ 				FRAMEWORK_SEARCH_PATHS = (
+ 					"$(inherited)",
+ 					"\"$(SRCROOT)/Frameworks\"",
+-					"\"$(SRCROOT)/build/Debug\"",
++					"\"$(SRCROOT)/build/Release-Debug\"",
+ 				);
+ 				PRODUCT_BUNDLE_IDENTIFIER = com.adiumX.adiumX;
+ 			};
+@@ -12126,7 +12126,7 @@
+ 				FRAMEWORK_SEARCH_PATHS = (
+ 					"$(inherited)",
+ 					"\"$(SRCROOT)/Frameworks\"",
+-					"\"$(SRCROOT)/build/Debug\"",
++					"\"$(SRCROOT)/build/Release-Debug\"",
+ 				);
+ 				GCC_PREPROCESSOR_DEFINITIONS = RELEASE_BUILD;
+ 				PRODUCT_BUNDLE_IDENTIFIER = com.adiumX.adiumX;
+@@ -12142,7 +12142,7 @@
+ 				FRAMEWORK_SEARCH_PATHS = (
+ 					"$(inherited)",
+ 					"\"$(SRCROOT)/Frameworks\"",
+-					"\"$(SRCROOT)/build/Debug\"",
++					"\"$(SRCROOT)/build/Release-Debug\"",
+ 				);
+ 				GCC_PREPROCESSOR_DEFINITIONS = (
+ 					RELEASE_BUILD,
+-- 
+2.25.0
+
