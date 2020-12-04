@@ -64,7 +64,7 @@ $(ADIUM_FRAMEWORK_PATH)/.patched: $(ADIUM_PATCHES) $(ADIUM_FRAMEWORK_PATH)/Makef
 	done
 	touch $@
 $(ADIUM_FRAMEWORK_PATH)/.built: $(ADIUM_FRAMEWORK_PATH)/.patched
-	$(MAKE) -C $(ADIUM_FRAMEWORK_PATH) adium
+	$(MAKE) -C $(ADIUM_FRAMEWORK_PATH) ADIUM_NIGHTLY_FLAGS='CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO' adium
 	touch $@
 
 vendor/carbons/build/carbons.a: vendor/carbons/Makefile $(ADIUM_FRAMEWORK_PATH)/Frameworks/libpurple.framework/libpurple
