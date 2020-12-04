@@ -40,9 +40,7 @@ build-mxml: vendor/mxml/libmxml.a
 
 build-l4a: build/$(BUILDCONFIGURATION)/Lurch4Adium.AdiumLibpurplePlugin
 build/%/Lurch4Adium.AdiumLibpurplePlugin: Lurch4Adium.xcodeproj/project.pbxproj \
-	$(ADIUM_FRAMEWORK_PATH)/build/Release-Debug/AIUtilities.framework/AIUtilities \
-	$(ADIUM_FRAMEWORK_PATH)/build/Release-Debug/Adium.framework/AIUtilities \
-	$(ADIUM_FRAMEWORK_PATH)/build/Release-Debug/AdiumLibpurple.framework/AIUtilities \
+	$(ADIUM_FRAMEWORK_PATH)/.built \
 	vendor/carbons/build/carbons.a \
 	vendor/lurch/build/lurch.a \
 	Lurch4Adium/Lurch4Adium.h \
@@ -60,18 +58,12 @@ vendor/.updated:
 Frameworks/:
 	mkdir -p $@
 
-$(ADIUM_FRAMEWORK_PATH)/build/Release-Debug/AIUtilities.framework/AIUtilities: $(ADIUM_FRAMEWORK_PATH)/.built
-$(ADIUM_FRAMEWORK_PATH)/build/Release-Debug/Adium.framework/AIUtilities: $(ADIUM_FRAMEWORK_PATH)/.built
-$(ADIUM_FRAMEWORK_PATH)/build/Release-Debug/AdiumLibpurple.framework/AIUtilities: $(ADIUM_FRAMEWORK_PATH)/.built
 $(ADIUM_FRAMEWORK_PATH)/.patched: $(ADIUM_PATCHES) $(ADIUM_FRAMEWORK_PATH)/Makefile
 	for PATCH in $(ADIUM_PATCHES); do \
 		cat $${PATCH} | git -C $(ADIUM_FRAMEWORK_PATH)/ am; \
 	done
 	touch $@
-$(ADIUM_FRAMEWORK_PATH)/.built: $(ADIUM_FRAMEWORK_PATH)/.patched \
-	$(ADIUM_FRAMEWORK_PATH)/build/Release-Debug/AIUtilities.framework/AIUtilities \
-	$(ADIUM_FRAMEWORK_PATH)/build/Release-Debug/Adium.framework/AIUtilities \
-	$(ADIUM_FRAMEWORK_PATH)/build/Release-Debug/AdiumLibpurple.framework/AIUtilities
+$(ADIUM_FRAMEWORK_PATH)/.built: $(ADIUM_FRAMEWORK_PATH)/.patched
 	$(MAKE) -C $(ADIUM_FRAMEWORK_PATH) adium
 	touch $@
 
