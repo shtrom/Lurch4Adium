@@ -3,9 +3,10 @@ BUILDCONFIGURATION=Release
 CWD=$(shell pwd)
 ADIUM_FRAMEWORK_PATH=$(CWD)/Frameworks/adium
 ADIUM_PATCHES=$(sort $(wildcard *.adium.patch))
+LOCAL_INCLUDES=$(CWD)/includes
 
-GLIB_FRAMEWORK_PATH=$(ADIUM_FRAMEWORK_PATH)/Frameworks/libglib.framework
-GLIB_CFLAGS=$(addprefix -I,$(wildcard $(GLIB_FRAMEWORK_PATH)/Headers))
+GLIB_FRAMEWORK_PATH=$(ADIUM_FRAMEWORK_PATH)/Frameworks/glib.framework
+GLIB_CFLAGS=-I$(LOCAL_INCLUDES) $(addprefix -I,$(wildcard $(GLIB_FRAMEWORK_PATH)/Headers))
 
 LIBPURPLE_FRAMEWORK_PATH=$(ADIUM_FRAMEWORK_PATH)/Frameworks/libpurple.framework
 LIBPURPLE_CFLAGS=$(addprefix -I,$(wildcard $(LIBPURPLE_FRAMEWORK_PATH)/Headers))
@@ -14,8 +15,9 @@ LIBPURPLE_LDFLAGS=$(wildcard $(ADIUM_FRAMEWORK_PATH)/Frameworks/lib*.framework/l
 LIBGPGPERROR_FRAMEWORK_PATH=$(ADIUM_FRAMEWORK_PATH)/Frameworks/libgpgerror.framework
 
 LIBGCRYPT_FRAMEWORK_PATH=$(ADIUM_FRAMEWORK_PATH)/Frameworks/libgcrypt.framework
-LIBGCRYPT_CFLAGS=$(addprefix -I,$(wildcard $(LIBGCRYPT_FRAMEWORK_PATH)/Headers) \
-		$(wildcard $(LIBGPGPERROR_FRAMEWORK_PATH)/Headers))
+# LIBGCRYPT_CFLAGS=$(addprefix -I,$(wildcard $(LIBGCRYPT_FRAMEWORK_PATH)/Headers) \
+# 		$(wildcard $(LIBGPGPERROR_FRAMEWORK_PATH)/Headers))
+LIBGCRYPT_CFLAGS=-I$(LOCAL_INCLUDES)
 LIBGCRYPT_LDFLAGS=$(wildcard $(LIBGCRYPT_FRAMEWORK_PATH)/lib*) \
 		  $(wildcard $(LIBGPGPERROR_FRAMEWORK_PATH)/lib*)
 
@@ -31,6 +33,14 @@ XCODEBUILD?=xcodebuild
 all: build-l4a
 
 prepare: prepare-vendor
+
+$(LOCAL_INCLUDES):
+	mkdir -p $(@)
+	ln -s $(GLIB_FRAMEWORK_PATH)/Headers $(@)/glib
+	ln -s $(LIBGTHREAD_FRAMEWORK_PATH)/Headers $(@)/libgthread
+	ln -s $(LIBPURPLE_FRAMEWORK_PATH)/Headers $(@)/libpurple
+	ln -s $(LIBGPGERROR_FRAMEWORK_PATH)/Headers $(@)/libgpgerror
+	ln -s $(LIBGCRYPT_FRAMEWORK_PATH)/Headers $(@)/libgcrypt
 
 patch-adium: $(ADIUM_FRAMEWORK_PATH)/.patched
 build-adium: $(ADIUM_FRAMEWORK_PATH)/.built
@@ -64,10 +74,10 @@ $(ADIUM_FRAMEWORK_PATH)/.patched: $(ADIUM_PATCHES) $(ADIUM_FRAMEWORK_PATH)/Makef
 	done
 	touch $@
 $(ADIUM_FRAMEWORK_PATH)/.built: $(ADIUM_FRAMEWORK_PATH)/.patched
-	$(MAKE) -C $(ADIUM_FRAMEWORK_PATH) ADIUM_NIGHTLY_FLAGS='CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO' adium
+	$(MAKE) -C $(ADIUM_FRAMEWORK_PATH) ADIUM_NIGHTLY_FLAGS='-arch=x86_64 CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO' adium
 	touch $@
 
-vendor/carbons/build/carbons.a: vendor/carbons/Makefile $(ADIUM_FRAMEWORK_PATH)/Frameworks/libpurple.framework/libpurple
+vendor/carbons/build/carbons.a: vendor/carbons/Makefile $(LOCAL_INCLUDES) $(ADIUM_FRAMEWORK_PATH)/Frameworks/libpurple.framework/libpurple
 	$(MAKE) -C vendor/carbons \
 		"GLIB_CFLAGS=$(GLIB_CFLAGS)" \
 		"GLIB_LDFLAGS=$(GLIB_LDFLAGS)" \
@@ -78,7 +88,7 @@ vendor/carbons/build/carbons.a: vendor/carbons/Makefile $(ADIUM_FRAMEWORK_PATH)/
 		LJABBER= \
 		build/carbons.a
 
-vendor/lurch/build/lurch.a: vendor/lurch/Makefile $(ADIUM_FRAMEWORK_PATH)/Frameworks/libpurple.framework/libpurple vendor/mxml/libmxml.a
+vendor/lurch/build/lurch.a: vendor/lurch/Makefile $(LOCAL_INCLUDES) $(ADIUM_FRAMEWORK_PATH)/Frameworks/libpurple.framework/libpurple vendor/mxml/libmxml.a
 	$(MAKE) -C vendor/lurch \
 		"GLIB_CFLAGS=$(GLIB_CFLAGS)" \
 		"GLIB_LDFLAGS=$(GLIB_LDFLAGS)" \
@@ -115,6 +125,7 @@ clean-mxml:
 	test ! -f vendor/mxml/Makefile || $(MAKE) -C vendor/mxml clean
 
 real-clean: clean
+	rm -rf $(LOCAL_INCLUDES)
 	git submodule deinit --all --force
 	rm -f vendor/.updated
 
